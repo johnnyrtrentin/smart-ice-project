@@ -14,18 +14,24 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <ion-label>Login</ion-label>
-    <ion-input type="text" placeholder="Digite seu e-mail" required></ion-input>
-    <ion-label>Senha</ion-label>
-    <ion-input type="password" placeholder="Digite sua senha" required></ion-input>
 
-    <ion-button color="primary" shape="" size="large"> Login com o Facebook
-      <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-    </ion-button>
-    <br>
-    <ion-button color="light" size="large">Login com o Google
-      <ion-icon slot="icon-only" name="logo-google"></ion-icon>
-    </ion-button>
+    <ion-slides>
+
+  <div id="container" class="slide-inner ion-padding">
+    <span>Login</span>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="email" placeholder="E-mail" [(ngModel)]="userLogin.email"></ion-input>
+        </ion-item>
+    
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.password"></ion-input>
+        </ion-item>
+
+        <ion-button class="ion-margin-top" (click)="login()" color="light" expand="block">
+          Entrar
+        </ion-button>
+
   </div>
+</ion-slides>
 </ion-content>
