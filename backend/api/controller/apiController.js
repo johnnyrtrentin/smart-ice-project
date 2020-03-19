@@ -6,6 +6,8 @@ const firestore = require('../../database/firebase');
 const db = firestore.database();
 
 exports.getAllUserInfo = function (request, response) {
+    let allUsers = [];
+
     db.collection('users')
         .get()
         .then(snapshot => {
@@ -13,9 +15,11 @@ exports.getAllUserInfo = function (request, response) {
                 response.status(404).json({ error: 'No matching collection.' });
                 return;
             }
+
             snapshot.forEach(user =>
-                response.status(200).json(user.data())
+                allUsers.push(user.data())
             );
+            response.status(200).json(allUsers);
         })
         .catch(err => response.status(500).json({ error: 'Something wrong.' }));
 };
