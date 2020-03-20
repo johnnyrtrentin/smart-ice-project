@@ -6,10 +6,10 @@
   "scripts": {
     "start": "npm run start-app:prod",
     "start-dev": "nodemon server.js",
-    "start-app:prod": "npm run start-prod:api & npm run start:ionic:prod",
+    "start-app:prod": "npm run start-prod:api & npm run start-ionic:prod",
     "start-prod:api": "npm run build-backend && node server.js",
-    "start:ionic:prod": "npm run build-mobile && npm start",
-    "build-mobile": "cd ./mobile/src npm install && npm start",
+    "start-ionic:prod": "npm run build-mobile && npm start",
+    "build-mobile": "cd ./mobile/src && npm install && npm start",
     "build-backend": "npm install",
     "preinstall": "npm install -g angular-cli",
     "test": "echo \"Error: no test specified\" && exit 1"
