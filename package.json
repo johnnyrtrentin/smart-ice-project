@@ -11,7 +11,7 @@
     "start:ionic:prod": "npm run build-mobile && npm start",
     "build-mobile": "cd ./mobile/src npm install && npm start",
     "build-backend": "npm install",
-    "preinstall": "npm install -g @angular-cli",
+    "preinstall": "npm install -g angular-cli",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Johnny Trentin",
