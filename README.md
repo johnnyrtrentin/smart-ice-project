@@ -16,3 +16,6 @@
 ```
 
 After that, open http://localhost:8100 in browser.
+
+Heroku app: 
+https://stark-taiga-93289.herokuapp.com/
