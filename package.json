@@ -7,6 +7,7 @@
     "start": "npm run start-app:prod",
     "start-dev": "nodemon server.js",
     "start-app:prod": "npm run start-prod:api",
+    "start-app:dev": "nodemon server.js",
     "start-prod:api": "node server.js",
     "start-ionic:prod": "npm run build-mobile && npm start",
     "build-mobile": "cd ./mobile/src && npm install && npm start",
