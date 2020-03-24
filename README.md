@@ -17,5 +17,5 @@
 
 After that, open http://localhost:8100 in browser.
 
-Heroku app: 
+> Heroku app URL
 https://stark-taiga-93289.herokuapp.com/

@@ -126,7 +126,7 @@ exports.putUserLocation = function (request, response) {
     const req = request.body;
     const user = request.query.name;
 
-    db.collection('users')
+    db.collection('location')
         .where('name', '==', user)
         .get()
         .then(snapshot => {
