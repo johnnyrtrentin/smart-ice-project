@@ -3,26 +3,28 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title><strong>Entrar</strong></ion-title>
+        <ion-title><strong> Entrar</strong></ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <form>
         <ion-item lines="full">
-            <ion-label position="floating">E-mail</ion-label>
+            <ion-label position="floating">
+                <ion-icon name="mail-unread-outline"></ion-icon> E-mail</ion-label>
             <ion-input type="text" required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
-            <ion-label position="floating">Senha</ion-label>
+            <ion-label position="floating">
+                <ion-icon name="lock-open-outline"></ion-icon> Senha</ion-label>
             <ion-input type="password" required></ion-input>
         </ion-item>
 
         <ion-row>
             <ion-col>
-                <ion-button type="submit" color="danger" expand="block"><strong>Entrar</strong></ion-button>
-                <a [routerLink]="['/forgot-password']" class="small-text">Esqueceu sua senha?</a>
+                <ion-button type="submit" color="danger" expand="block"><strong><ion-icon name="log-in-outline"></ion-icon> Entrar</strong></ion-button>
+                <a [routerLink]="['/forgot-password']" class="small-text"> <ion-icon name="alert-circle-outline"></ion-icon> Esqueceu sua senha?</a>
             </ion-col>
         </ion-row>
 
