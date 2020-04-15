@@ -1,30 +1,55 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>
-            Smart Ice
-        </ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title><strong>Insira seus Dados</strong></ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="auth-form">
-    <ion-grid>
-        <ion-row>
-            <a>AQUI O USUARIO IRÁ INSERIR OS DADOS
-                COMO:
-                <BR>
-                HORARIO DE SAIDA
-                <BR>
-                SALA
-                <BR>
-                TURMA
-                <BR>
-                DISCIPLINA
-                <BR>
-                CURSO
-                <BR>
-                E AI IREMOS CRIAR OUTRA TELA COM O MAPA
+<ion-content>
+    <form>
+        <ion-item lines="full">
+            <ion-label position="floating">Sala de aula:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
 
-            </a>
+        <ion-item lines="full">
+            <ion-label position="floating">Turma:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Disciplina:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Curso:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Horário de Saida:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Localização:</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" required></ion-input>
+        </ion-item>
+
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" color="success" expand="block"><strong>Confirmar</strong></ion-button>
+            </ion-col>
         </ion-row>
-    </ion-grid>
+
+
+    </form>
 </ion-content>
