@@ -3,53 +3,23 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title><strong>Insira seus Dados</strong></ion-title>
+        <ion-title><strong>Localização atual</strong></ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <form>
+       
+        // mapa para teste
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PTiPfkycz0yw9Uu5yLn0dKslU4ZhwppR" width="640" height="480"></iframe>
+
+        <br>
+        <br>
         <ion-item lines="full">
             <ion-label position="floating">
-                <ion-icon name="school-outline"></ion-icon> Curso</ion-label>
-            <ion-input type="text" required></ion-input>
+                <ion-icon name="time-outline"></ion-icon> Horário de chegada (previsto)</ion-label>
+            
         </ion-item>
-
-        <ion-item lines="full">
-            <ion-label position="floating">
-                <ion-icon name="chatbubbles-outline"></ion-icon> Turma</ion-label>
-            <ion-input type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item lines="full">
-            <ion-label position="floating">
-                <ion-icon name="book-outline"></ion-icon> Disciplina</ion-label>
-            <ion-input type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item lines="full">
-            <ion-label position="floating">
-                <ion-icon name="bookmark-outline"></ion-icon> Sala</ion-label>
-            <ion-input type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item lines="full">
-            <ion-label position="floating">
-                <ion-icon name="time-outline"></ion-icon> Horário de Saída do Local</ion-label>
-            <ion-input type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item lines="full">
-            <ion-label position="floating">
-                <ion-icon name="location-outline"></ion-icon> Localização</ion-label>
-            <ion-input type="text" required></ion-input>
-        </ion-item>
-
-        <ion-row>
-            <ion-col>
-                <ion-button type="submit" color="success" expand="block"><strong>Confirmar</strong></ion-button>
-            </ion-col>
-        </ion-row>
 
 
     </form>
