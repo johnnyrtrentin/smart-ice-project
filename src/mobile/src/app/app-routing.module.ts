@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'dice-user',
     loadChildren: () => import('./dice-user/dice-user.module').then(m => m.DiceUserPageModule)
   },
+  {
+    path: 'location-user',
+    loadChildren: () => import('./location-user/location-user.module').then(m => m.LocationUserPageModule)
+  },
 ];
 
 @NgModule({
