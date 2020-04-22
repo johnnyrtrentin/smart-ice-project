@@ -9,18 +9,28 @@
 
 <ion-content>
     <form>
-       
-        // mapa para teste
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PTiPfkycz0yw9Uu5yLn0dKslU4ZhwppR" width="640" height="480"></iframe>
+        <ion-grid>
+            <ion-row>
+                <ion-col size-md="12" push-md="3">
+                <div>
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PTiPfkycz0yw9Uu5yLn0dKslU4ZhwppR" width="640" height="480"></iframe>
+                </div>
+            </ion-col>
+            </ion-row>
+          </ion-grid>
+    
 
-        <br>
-        <br>
         <ion-item lines="full">
             <ion-label position="floating">
-                <ion-icon name="time-outline"></ion-icon> Horário de chegada (previsto)</ion-label>
-            
+                <ion-icon name="time-outline"></ion-icon> Horário de Saída do Local</ion-label>
+            <ion-input type="text" required></ion-input>
         </ion-item>
 
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="time-outline"></ion-icon> Previsão de Chegada</ion-label>
+            <ion-input type="text" required></ion-input>
+        </ion-item>
 
     </form>
 </ion-content>
