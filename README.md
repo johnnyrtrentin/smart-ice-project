@@ -23,6 +23,9 @@ After that, open http://localhost:8100 in browser.
     - Android Studio <https://developer.android.com/studio>
     - Configured SDK Manager
     - Configured AVD Manager
+    - Set ANDROID_HOME and gradle enviroment variables
+        -export ANDROID_HOME=/<directory>/Android/Sdk
+        -export PATH=$PATH:/opt/gradle/<gradle-version>/bin
 
 * Emulate in Android Studio
 ```bash
