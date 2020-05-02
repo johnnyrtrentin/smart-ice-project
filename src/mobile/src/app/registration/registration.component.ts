@@ -10,12 +10,11 @@ import { PhotoService } from '../services/photo.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  image: SafeValue;
+  image: any;
 
   constructor(
     private route: Router,
-    private camera: PhotoService,
-    private sanitizer: DomSanitizer
+    private camera: PhotoService
   ) { }
 
   ngOnInit(): void { }
@@ -26,15 +25,7 @@ export class RegistrationComponent implements OnInit {
 
   takePhoto(): void {
     this.camera.takePhoto().then(() => {
-      this.loadPhoto();
+      this.image = this.camera.currentPhoto;
     });
-  }
-
-  loadPhoto(): void {
-    let photoPath;
-    const photos = this.camera.photos.forEach(image => photoPath = image.webviewPath);
-
-    this.image = this.sanitizer.bypassSecurityTrustUrl(photoPath);
-    this.camera.photos = [];
   }
 }
