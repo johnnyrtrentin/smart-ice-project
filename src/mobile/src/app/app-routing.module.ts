@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'location-user',
     loadChildren: () => import('./location-user/location-user.module').then(m => m.LocationUserPageModule)
-  },
+  }
 ];
 
 @NgModule({

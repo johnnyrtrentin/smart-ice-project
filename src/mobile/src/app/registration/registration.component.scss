@@ -1,0 +1,16 @@
+.user-image {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .user-photo {
+        height: 230px;
+        width: 280px;
+        margin-bottom: 10px;
+    }
+
+    .no-photo {
+        height: 120px;
+        width: 200px;
+    }
+}

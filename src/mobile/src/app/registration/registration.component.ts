@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
+import { SafeValue, DomSanitizer } from '@angular/platform-browser';
+
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-registration',
@@ -8,11 +10,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-    constructor(private route: Router) {}
+  image: SafeValue;
 
-    ngOnInit(): void { }
+  constructor(
+    private route: Router,
+    private camera: PhotoService,
+    private sanitizer: DomSanitizer
+  ) { }
 
-    registration(): void {
-      this.route.navigateByUrl('/dice-user');
+  ngOnInit(): void { }
+
+  registration(): void {
+    this.route.navigateByUrl('/dice-user');
+  }
+
+  takePhoto(): void {
+    this.camera.takePhoto().then(() => {
+      this.loadPhoto();
+    });
+  }
+
+  loadPhoto(): void {
+    let photoPath;
+    const photos = this.camera.photos.forEach(image => photoPath = image.webviewPath);
+
+    this.image = this.sanitizer.bypassSecurityTrustUrl(photoPath);
+    this.camera.photos = [];
   }
 }
