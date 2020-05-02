@@ -14,8 +14,24 @@
  npm install
  ionic serve --host=0.0.0.0  --port=8100
 ```
-
 After that, open http://localhost:8100 in browser.
+
+> To Emulate in Android Studio or Generate APK
+
+* Configuration
+    - Install grade <https://gradle.org/install/>
+    - Android Studio <https://developer.android.com/studio>
+    - Configured SDK Manager
+    - Configured AVD Manager
+
+* Emulate in Android Studio
+```bash
+    ionic cordova build android 
+```
+* Generate APK
+```bash
+    ionic cordova emulate android
+```
 
 > Heroku app URL
 https://stark-taiga-93289.herokuapp.com/
