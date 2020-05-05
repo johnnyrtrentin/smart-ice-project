@@ -7,9 +7,7 @@ local.properties
 /app
 
 # Cordova
-/cordova
-/CordovaLib
-/platform_www
+
 # Ant builds
 ant-build
 ant-gen
