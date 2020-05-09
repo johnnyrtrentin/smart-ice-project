@@ -18,5 +18,6 @@ module.exports = function (app) {
 
     app.use(function (request, response) {
         response.status(404).send({ url: request.originalUrl + ' not found' })
+        console.log('a')
     });
 }

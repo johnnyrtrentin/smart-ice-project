@@ -28,4 +28,3 @@ app
     .listen(port);
     
 routes(app);
-
