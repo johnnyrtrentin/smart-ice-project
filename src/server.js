@@ -4,10 +4,8 @@ const express  = require('express'),
     firebase   = require('./database/firebase'),
     cors = require('cors'),
     app        = express(),
-    port       = process.env.PORT || 3000;
+    port       = process.env.PORT || 3300;
     
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -15,6 +13,8 @@ app.use(function(req, res, next) {
     app.use(cors());
     next();
 });
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
     
 routes(app);
 
