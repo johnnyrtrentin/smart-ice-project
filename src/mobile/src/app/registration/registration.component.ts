@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SafeValue, DomSanitizer } from '@angular/platform-browser';
 
 import { PhotoService } from '../services/photo.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,10 +15,13 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private camera: PhotoService
+    private camera: PhotoService,
+    private asd: UserService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.asd.getAllUsers().subscribe();
+   }
 
   registration(): void {
     this.route.navigateByUrl('/dice-user');

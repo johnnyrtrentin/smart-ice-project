@@ -22,7 +22,6 @@ const allowCrossDomain = function(req, res, next) {
     
 app
     .use(allowCrossDomain)
-    .use(cors())
     .use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())
     .listen(port);

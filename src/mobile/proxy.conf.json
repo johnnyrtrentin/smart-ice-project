@@ -1,0 +1,7 @@
+{
+    "/api": {
+      "target": "https://stark-taiga-93289.herokuapp.com",
+      "secure": true,
+      "changeOrigin": true
+    }
+  }
