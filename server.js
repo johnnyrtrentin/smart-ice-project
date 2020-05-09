@@ -2,9 +2,8 @@ const express  = require('express'),
     bodyParser = require('body-parser'),
     routes     = require('./api/routes/apiRoutes'),
     firebase   = require('./database/firebase'),
-    cors       = require('cors'),
     app        = express(),
-    port       = process.env.PORT || 3300;
+    port       = process.env.PORT || 3000;
 
 const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
