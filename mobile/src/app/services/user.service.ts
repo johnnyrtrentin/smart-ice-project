@@ -6,12 +6,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'https://stark-taiga-93289.herokuapp.com/';
+  private apiURL = 'https://stark-taiga-93289.herokuapp.com';
+  private userEndpoint = 'api/user';
 
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<any> {
-    const getUsers = 'api/user/all';
-    return this.http.get(`${this.url}${getUsers}`);
+    return this.http.get(`${this.apiURL}/${this.userEndpoint}/all`);
+  }
+
+  getUserInfo(name: string): Observable<any> {
+    return this.http.get(`${this.apiURL}/${this.userEndpoint}?name=${name}`);
+  }
+
+  saveUserInfo(payload: object): Observable<any> {
+    return this.http.post(`${this.apiURL}/${this.userEndpoint}`, payload);
+  }
+
+  editUserInfo(payload: object): Observable<any> {
+    return this.http.put(`${this.apiURL}/${this.userEndpoint}`, payload);
   }
 }
