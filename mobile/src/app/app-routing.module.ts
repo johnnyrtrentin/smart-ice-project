@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationPageModule)
   },
   {
-    path: 'dice-user',
-    loadChildren: () => import('./dice-user/dice-user.module').then(m => m.DiceUserPageModule)
+    path: 'info-user',
+    loadChildren: () => import('./info-user/info-user.module').then(m => m.DiceUserPageModule)
   },
   {
     path: 'location-user',

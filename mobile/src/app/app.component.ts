@@ -33,7 +33,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.loginGoogle.user.subscribe(user =>
-      user ? this.isUserLogged = of(true) : this.isUserLogged = of(false));
+      user
+        ? this.isUserLogged = of(true)
+        : this.isUserLogged = of(false)
+    );
   }
 
   logOut(): void {

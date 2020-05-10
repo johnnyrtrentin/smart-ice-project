@@ -14,9 +14,9 @@ export class GoogleLoginService {
   user: Observable<firebase.User>;
 
   constructor(
-    private ngAuth: AngularFireAuth,
     private gPlus: GooglePlus,
-    private platform: Platform
+    private platform: Platform,
+    private ngAuth: AngularFireAuth
   ) {
     this.user = this.ngAuth.authState;
   }

@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title><strong>Insira seus Dados</strong></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="userForm" (ngSubmit)="submitData()">
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="school-outline"></ion-icon> Curso</ion-label>
+            <ion-input type="text" formControlName="course" required></ion-input>
+
+            <div *ngIf="course.invalid && (course.dirty || course.touched)" class="error-msg">
+                <div *ngIf="course.errors.required">
+                    O campo <strong>curso</strong> é obrigatório
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="chatbubbles-outline"></ion-icon> Turma</ion-label>
+            <ion-input type="text" formControlName="class"></ion-input>
+
+            <div *ngIf="class.invalid && (class.dirty || class.touched)" class="error-msg">
+                <div *ngIf="class.errors.required">
+                    O campo <strong>turma</strong> é obrigatório
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="book-outline"></ion-icon> Disciplina</ion-label>
+            <ion-input type="text" formControlName="discipline"></ion-input>
+
+            <div *ngIf="discipline.invalid && (discipline.dirty || discipline.touched)" class="error-msg">
+                <div *ngIf="discipline.errors.required">
+                    O campo <strong>disciplina</strong> é obrigatório
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="bookmark-outline"></ion-icon> Sala</ion-label>
+            <ion-input type="text" formControlName="classRoom"></ion-input>
+
+            <div *ngIf="classRoom.invalid && (classRoom.dirty || classRoom.touched)" class="error-msg">
+                <div *ngIf="classRoom.errors.required">
+                    O campo <strong>Sala</strong> é obrigatório
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">
+                <ion-icon name="time-outline"></ion-icon> Horário de Saída do Local</ion-label>
+            <ion-input type="text" formControlName="exitTime"></ion-input>
+
+            <div *ngIf="exitTime.invalid && (exitTime.dirty || exitTime.touched)" class="error-msg">
+                <div *ngIf="exitTime.errors.required">
+                    O campo <strong>horário de saída do local</strong> é obrigatório
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-row>
+            <ion-col style="padding-top: 35px;">
+                <ion-button
+                    type="submit"
+                    color="success"
+                    expand="block"
+                    [disabled]="userForm.status === 'INVALID'">
+                        <strong>Confirmar</strong>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

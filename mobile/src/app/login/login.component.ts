@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
             isAnonymous: userInfo.isAnonymous
           };
 
-          this.route.navigateByUrl('/location-user');
+          this.route.navigateByUrl('/info-user');
         }
       });
     });
