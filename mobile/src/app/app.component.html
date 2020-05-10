@@ -1,23 +1,28 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 
-  <ion-tabs>
+  <ion-tabs *ngIf="(isUserLogged | async)">
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="registration">
+        <!-- <ion-tab-button tab="registration">
           <ion-icon name="person-circle-outline"></ion-icon>
           <ion-label>Registrar</ion-label>
-        </ion-tab-button>
-          
-        <ion-tab-button tab="location-user">
-          <ion-icon name="map-outline"></ion-icon>
-          <ion-label>Localização</ion-label>
-        </ion-tab-button>
-
+        </ion-tab-button> -->
+        
         <ion-tab-button tab="dice-user">
           <ion-icon name="server-outline"></ion-icon>
           <ion-label>Dados da Sala</ion-label>
         </ion-tab-button>
         
+        <ion-tab-button tab="location-user">
+          <ion-icon name="map-outline"></ion-icon>
+          <ion-label>Localização</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="login" (click)="logOut()">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-tab-button>
+
       </ion-tab-bar>
     </ion-tabs>
 </ion-app>
