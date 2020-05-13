@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { Platform } from '@ionic/angular';
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private loginGoogle: GoogleLoginService
+    private loginGoogle: GoogleLoginService,
+    private route: Router
   ) {
     this.initializeApp();
   }
@@ -32,10 +34,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginGoogle.user.subscribe(user =>
-      user
-        ? this.isUserLogged = of(true)
-        : this.isUserLogged = of(false)
+    this.loginGoogle.user.subscribe(user => {
+      if (user) {
+        this.route.navigateByUrl('info-user');
+        this.isUserLogged = of(true);
+      } else {
+        this.isUserLogged = of(false);
+      }
+    }
     );
   }
 

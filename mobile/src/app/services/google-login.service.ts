@@ -41,9 +41,8 @@ export class GoogleLoginService {
     try {
       // TODO: pegar as credencias da API qnd o google liberar.
       const googleUser = await this.gPlus.login({
-        webClientId: '',
-        offline: true,
-        scopes: ''
+        webClientId: '284943082995-2l5h7ija16gc2m921it1ut9fn95qb8as.apps.googleusercontent.com',
+        offline: true
       });
 
       return await this.ngAuth.auth.signInWithCredential(
