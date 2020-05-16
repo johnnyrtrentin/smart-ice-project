@@ -172,3 +172,27 @@ exports.postUserLocation = function (request, response) {
             console.error(`Error to put user location data in database: ${err}`);
         });
 };
+
+
+
+exports.getDispositivo = function (request, response) {
+    const Arcode = request.query.name;
+
+    db.collection('DispostivoIO')
+        .where('Part. Number', '==', Arcode)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.empty) {
+                response.status(404).json({ error: 'No matching user DispositoIO.' });
+                return;
+            }
+
+            snapshot.forEach(user =>
+                response.status(200).json(user.data())
+            );
+        })
+        .catch(err => {
+            response.status(500).json({ error: 'something wrong.' });
+            console.error(`Error to get user Dispositivo data in database: ${err}`);
+        });
+};
