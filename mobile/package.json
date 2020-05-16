@@ -6,6 +6,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ionic serve --proxy-config proxy.conf.json",
+    "cordova-browser": "ionic cordova run browser",
+    "android-start": "ionic cordova emulate android",
+    "android-build": "ionic cordova build android",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,15 +24,20 @@
     "@angular/router": "~8.2.14",
     "@capacitor/core": "1.5.1",
     "@ionic-native/camera": "^5.24.0",
-    "@ionic-native/core": "^5.0.0",
+    "@ionic-native/core": "^5.26.0",
     "@ionic-native/firebase": "^4.20.0",
+    "@ionic-native/geolocation": "^5.26.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^1.5.2",
+    "@types/google-maps": "^3.2.2",
     "angularfire2": "^5.4.2",
     "cordova-android": "8.1.0",
+    "cordova-browser": "^6.0.0",
     "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-plugin-googlemaps": "^2.7.1",
     "core-js": "^2.5.4",
     "firebase": "^7.14.3",
     "rxjs": "~6.5.1",
@@ -84,10 +92,17 @@
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "io.ionic.starter",
         "WEB_APPLICATION_CLIENT_ID": "284943082995-2l5h7ija16gc2m921it1ut9fn95qb8as.apps.googleusercontent.com"
+      },
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyB4jz3FIP2T7J4bmP1GWAfWG22YApJYKV0"
+      },
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

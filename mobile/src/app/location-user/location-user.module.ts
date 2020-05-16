@@ -4,20 +4,23 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LocationUser } from './location-user.page';
+import { LocationUserComponent } from './location-user.component';
+
+import { GoogleMapsModule } from '../google-maps/google-maps.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    GoogleMapsModule,
     RouterModule.forChild([
       {
         path: '',
-        component: LocationUser
+        component: LocationUserComponent
       }
     ])
   ],
-  declarations: [LocationUser]
+  declarations: [LocationUserComponent]
 })
 export class LocationUserPageModule {}

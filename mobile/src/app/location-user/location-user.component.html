@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title><strong>Localização atual</strong></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="12" push-md="3">
+                <app-google-maps></app-google-maps>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-item>
+        <ion-label>
+          Tempo de trajeto: {{ googleMapsService?.finalDuration }}
+        </ion-label>
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+    </ion-item>
+      
+    <ion-item>
+        <ion-label>
+          Previsão de chegada: 
+        </ion-label>
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+    </ion-item>
+     
+    <ion-item>
+        <ion-label>
+          Distância: {{ googleMapsService?.finalDistance }}
+        </ion-label>
+        <ion-icon name="bicycle-outline" slot="start"></ion-icon>
+    </ion-item>
+
+</ion-content>
