@@ -68,11 +68,12 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
         response.coords.latitude, response.coords.latitude
       );
 
-      this.originPosition = new google.maps.LatLng(-27.086275, -48.922176);
+      // this.originPosition = new google.maps.LatLng(-27.086275, -48.922176);
 
       const mapOptions: google.maps.MapOptions = {
         zoom: 5,
         center: this.originPosition,
+        zoomControl: true,
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
