@@ -16,6 +16,10 @@ module.exports = function (app) {
         .post(apiController.postUserLocation)
         .put(apiController.putUserLocation);
 
+    app.route('/api/Dispositivo')
+        .get(apiController.getDispositivo)
+        
+
     app.use(function (request, response) {
         response.status(404).send({ url: request.originalUrl + ' not found' })
     });
