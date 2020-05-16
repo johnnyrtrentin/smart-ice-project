@@ -15,6 +15,8 @@ export class InfoUserComponent implements OnInit {
   userForm: FormGroup;
   model: UserData = new UserData();
 
+  loadingButton: boolean;
+
   constructor(
     private route: Router,
     private userService: UserService,
@@ -46,10 +48,12 @@ export class InfoUserComponent implements OnInit {
   get exitTime() { return this.userForm.get('exitTime'); }
 
   submitData(): void {
+    this.loadingButton = true;
+
     this.loginService.user.subscribe(loggedUserData => {
       if (loggedUserData) {
         const userPayload = {
-          name: loggedUserData.displayName,
+          name: 'Johnny Trentin',
           course: this.course.value,
           class: this.class.value,
           discipline: this.discipline.value,
@@ -59,6 +63,7 @@ export class InfoUserComponent implements OnInit {
 
         this.userService.saveUserInfo(userPayload).subscribe(userData => {
           if (UserData) {
+            this.loadingButton = false;
             this.route.navigateByUrl('/location-user');
           }
         });

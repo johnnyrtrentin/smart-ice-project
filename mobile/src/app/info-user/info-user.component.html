@@ -60,7 +60,7 @@
         <ion-item lines="full">
             <ion-label position="floating">
                 <ion-icon name="time-outline"></ion-icon> Horário de Saída do Local</ion-label>
-            <ion-input type="text" formControlName="exitTime"></ion-input>
+                <ion-datetime displayFormat="HH:mm" formControlName="exitTime"></ion-datetime>
 
             <div *ngIf="exitTime.invalid && (exitTime.dirty || exitTime.touched)" class="error-msg">
                 <div *ngIf="exitTime.errors.required">
@@ -71,12 +71,18 @@
 
         <ion-row>
             <ion-col style="padding-top: 35px;">
+                <ion-progress-bar 
+                    type="indeterminate" 
+                    color="medium"
+                    *ngIf="loadingButton">
+                </ion-progress-bar>
                 <ion-button
                     type="submit"
                     color="success"
                     expand="block"
-                    [disabled]="userForm.status === 'INVALID'">
-                        <strong>Confirmar</strong>
+                    [disabled]="userForm.status === 'INVALID' || loadingButton"
+                >
+                    <strong>Confirmar</strong>
                 </ion-button>
             </ion-col>
         </ion-row>
