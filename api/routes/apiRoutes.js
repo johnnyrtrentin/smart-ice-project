@@ -16,8 +16,8 @@ module.exports = function (app) {
         .post(apiController.postUserLocation)
         .put(apiController.putUserLocation);
 
-    app.route('/api/Dispositivo')
-        .get(apiController.getDispositivo)
+    app.route('/api/IoDevice')
+        .get(apiController.getDevice);
         
 
     app.use(function (request, response) {

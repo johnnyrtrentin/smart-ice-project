@@ -175,15 +175,15 @@ exports.postUserLocation = function (request, response) {
 
 
 
-exports.getDispositivo = function (request, response) {
-    const Arcode = request.query.name;
+exports.getDevice = function (request, response) {
+    const ArCode = request.query.name;
 
-    db.collection('DispostivoIO')
-        .where('Part. Number', '==', Arcode)
+    db.collection('IoDevices')
+        .where('PartNumber', '==', ArCode)
         .get()
         .then((snapshot) => {
             if (snapshot.empty) {
-                response.status(404).json({ error: 'No matching user DispositoIO.' });
+                response.status(404).json({ error: 'No matching user Devices.' });
                 return;
             }
 
@@ -193,6 +193,6 @@ exports.getDispositivo = function (request, response) {
         })
         .catch(err => {
             response.status(500).json({ error: 'something wrong.' });
-            console.error(`Error to get user Dispositivo data in database: ${err}`);
+            console.error(`Error to get user Devices data in database: ${err}`);
         });
 };
