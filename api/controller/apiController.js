@@ -8,19 +8,19 @@ exports.getAllUserInfo = function (request, response) {
 
     db.collection('users')
         .get()
-        .then(snapshot => {
-            if (snapshot.empty) {
+        .then(document => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching collection.' });
                 return;
             }
 
-            snapshot.forEach(user =>
+            document.forEach(user =>
                 allUsers.push(user.data())
             );
             response.status(200).json(allUsers);
         })
         .catch(err => {
-            response.status(500).json({ error: 'Something wrong.' });
+            response.status(500).json({ error: err });
             console.error(`Error to get all user info: ${err}`);
         });
 };
@@ -31,17 +31,17 @@ exports.getUserInfo = function (request, response) {
     db.collection('users')
         .where('name', '==', paramName)
         .get()
-        .then((snapshot) => {
-            if (snapshot.empty) {
+        .then((document) => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching user information.' });
                 return;
             }
-            snapshot.forEach(doc =>
+            document.forEach(doc =>
                 response.status(200).json(doc.data())
             );
         })
         .catch(err => {
-            response.status(500).json({ error: 'Something wrong.' });
+            response.status(500).json({ error: err });
             console.error(`Error to get user info: ${err}`);
         });
 };
@@ -54,18 +54,18 @@ exports.putUserinfo = function (request, response) {
     db.collection('users')
         .where('name', '==', user)
         .get()
-        .then(snapshot => {
-            if (snapshot.empty) {
+        .then(document => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching user information.' });
                 return;
             }
 
-            dbUser = snapshot.forEach(user =>
+            dbUser = document.forEach(user =>
                 dbUser.push(user.data())
             );
 
         }).catch(err => {
-            response.status(500).json({ error: 'Something wrong.' })
+            response.status(500).json({ error: err })
             console.error(`Error to get user in database: ${err}`);
         });
 
@@ -76,7 +76,7 @@ exports.putUserinfo = function (request, response) {
             .then(() =>
                 response.status(200).json(req))
             .catch(err => {
-                response.status(500).json({ error: 'Something wrong.' })
+                response.status(500).json({ error: err })
                 console.error(`Error to put user data in database: ${err}`);
             });
     }
@@ -94,7 +94,7 @@ exports.postUserInfo = function (request, response) {
         .then(() =>
             response.status(200).json(user))
         .catch(err => {
-            response.status(500).json({ error: 'something wrong.' });
+            response.status(500).json({ error: err });
             console.err(`Error to put user data in database: ${err}`);
         });
 };
@@ -105,18 +105,18 @@ exports.getUserLocation = function (request, response) {
     db.collection('location')
         .where('name', '==', userName)
         .get()
-        .then((snapshot) => {
-            if (snapshot.empty) {
+        .then((document) => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching user location.' });
                 return;
             }
 
-            snapshot.forEach(user =>
+            document.forEach(user =>
                 response.status(200).json(user.data())
             );
         })
         .catch(err => {
-            response.status(500).json({ error: 'something wrong.' });
+            response.status(500).json({ error: err });
             console.error(`Error to get user location data in database: ${err}`);
         });
 };
@@ -130,18 +130,18 @@ exports.putUserLocation = function (request, response) {
     db.collection('location')
         .where('name', '==', user)
         .get()
-        .then(snapshot => {
-            if (snapshot.empty) {
+        .then(document => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching user information.' });
                 return;
             }
 
-            dbUser = snapshot.forEach(user =>
+            dbUser = document.forEach(user =>
                 dbUser.push(user.data())
             );
 
         }).catch(err => {
-            response.status(500).json({ error: 'Something wrong.' })
+            response.status(500).json({ error: err })
             console.error(`Error to get user in database: ${err}`);
         });
 
@@ -152,7 +152,7 @@ exports.putUserLocation = function (request, response) {
             .then(() =>
                 response.status(200).json(req))
             .catch(err => {
-                response.status(500).json({ error: 'Something wrong.' })
+                response.status(500).json({ error: err })
                 console.error(`Error to put user data in database: ${err}`);
             });
     }
@@ -170,30 +170,30 @@ exports.postUserLocation = function (request, response) {
         .then(() =>
             response.status(200).json(location))
         .catch(err => {
-            response.status(500).json({ error: 'something wrong.' });
+            response.status(500).json({ error: err });
             console.error(`Error to put user location data in database: ${err}`);
         });
 };
 
 exports.getDevice = function (request, response) {
-    const arCode = request.query.partnumber;
+    const roomDevice = request.query.classroom;
 
     db.collection('devices')
-        .where('partnumber', '==', arCode)
+        .where('classroom', '==', roomDevice)
         .get()
-        .then((snapshot) => {
-            if (snapshot.empty) {
+        .then((document) => {
+            if (document.empty) {
                 response.status(404).json({ error: 'No matching user Devices.' });
                 return;
             }
 
-            snapshot.forEach(user =>
-                response.status(200).json(user.data())
+            document.forEach(device =>
+                response.status(200).json(device.data())
             );
         })
         .catch(err => {
-            response.status(500).json({ error: 'something wrong.' });
-            console.error(`Error to get user Devices data in database: ${err}`);
+            response.status(500).json({ error: err });
+            console.error(`Error to get devices data in database: ${err}`);
         });
 };
 
@@ -209,7 +209,7 @@ exports.postDevice = function (request, response) {
         .then(() =>
             response.status(200).json(device))
         .catch(err => {
-            response.status(500).json({ error: 'something wrong.' });
+            response.status(500).json({ error: err });
             console.error(`Error to put device data in database: ${err}`);
         });
 };
@@ -234,7 +234,7 @@ exports.putDevice = function (request, response) {
             );
 
         }).catch(err => {
-            response.status(500).json({ error: 'Something wrong.' })
+            response.status(500).json({ error: err })
             console.error(`Error to get user in database: ${err}`);
         });
 
@@ -245,7 +245,7 @@ exports.putDevice = function (request, response) {
             .then(() =>
                 response.status(200).json(req))
             .catch(err => {
-                response.status(500).json({ error: 'Something wrong.' })
+                response.status(500).json({ error: err })
                 console.error(`Error to put device data in database: ${err}`);
             });
     }

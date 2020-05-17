@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { UserData } from '../models/user-data.model';
+import { finalize } from 'rxjs/operators';
+
 import { UserService } from '../services/user.service';
+import { DeviceService } from '../services/device.service';
 import { GoogleLoginService } from '../services/google-login.service';
-import { Router } from '@angular/router';
+
+import { UserData } from '../models/user-data.model';
+import { IDevice } from '../models/device.model';
 
 @Component({
   selector: 'app-dice-user',
@@ -20,7 +25,8 @@ export class InfoUserComponent implements OnInit {
   constructor(
     private route: Router,
     private userService: UserService,
-    private loginService: GoogleLoginService
+    private loginService: GoogleLoginService,
+    private deviceService: DeviceService
   ) { }
 
   ngOnInit(): void {
@@ -53,20 +59,48 @@ export class InfoUserComponent implements OnInit {
     this.loginService.user.subscribe(loggedUserData => {
       if (loggedUserData) {
         const userPayload = {
-          name: 'Johnny Trentin',
+          name: loggedUserData.displayName,
           course: this.course.value,
           class: this.class.value,
           discipline: this.discipline.value,
-          classRoom: this.discipline.value,
+          classRoom: this.classRoom.value,
           exitTime: this.exitTime.value
         };
 
-        this.userService.saveUserInfo(userPayload).subscribe(userData => {
-          if (UserData) {
-            this.loadingButton = false;
-            this.route.navigateByUrl('/location-user');
-          }
-        });
+        this.deviceService
+          .getDevice(userPayload.classRoom)
+          .pipe(finalize(() => this.saveUserInfo(userPayload)))
+          .subscribe(res => {
+            if (!res.status) {
+              const updateDevice: IDevice = {
+                status: true,
+                partnumber: 'TESTE'
+              };
+
+              this.deviceService
+                .updateDevice(updateDevice)
+                .subscribe();
+            }
+          }, (err => {
+            const newDevice: IDevice = {
+              status: true,
+              classroom: userPayload.classRoom,
+              partnumber: 'TESTE'
+            };
+
+            this.deviceService
+              .saveDevice(newDevice)
+              .subscribe();
+          }));
+      }
+    });
+  }
+
+  saveUserInfo(userPayload: object): void {
+    this.userService.saveUserInfo(userPayload).subscribe(userData => {
+      if (UserData) {
+        this.loadingButton = false;
+        this.route.navigateByUrl('/location-user');
       }
     });
   }
