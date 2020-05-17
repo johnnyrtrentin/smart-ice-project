@@ -7,7 +7,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 
-import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
+import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation/ngx';
 import { Platform } from '@ionic/angular';
 
 import { GoogleMapsService } from '../services/google-maps.service';
@@ -38,6 +38,7 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     public platform: Platform,
+    private geolocation: Geolocation,
     private googleMapsService: GoogleMapsService
   ) { }
 
@@ -63,7 +64,7 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
       enableHighAccuracy: true
     };
 
-    Geolocation.getCurrentPosition(options).then(response => {
+    this.geolocation.getCurrentPosition(options).then(response => {
       this.originPosition = new google.maps.LatLng(
         response.coords.latitude, response.coords.latitude
       );
