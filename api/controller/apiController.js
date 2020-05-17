@@ -44,7 +44,7 @@ exports.getUserInfo = function (request, response) {
             response.status(500).json({ error: 'Something wrong.' });
             console.error(`Error to get user info: ${err}`);
         });
-}
+};
 
 exports.putUserinfo = function (request, response) {
     let dbUser = [];
@@ -80,7 +80,7 @@ exports.putUserinfo = function (request, response) {
                 console.error(`Error to put user data in database: ${err}`);
             });
     }
-}
+};
 
 exports.postUserInfo = function (request, response) {
     const user = request.body;
@@ -88,7 +88,8 @@ exports.postUserInfo = function (request, response) {
         ? user.name
         : undefined;
 
-    db.collection('users').doc(personName)
+    db.collection('users')
+        .doc(personName)
         .set(user)
         .then(() =>
             response.status(200).json(user))
@@ -155,7 +156,7 @@ exports.putUserLocation = function (request, response) {
                 console.error(`Error to put user data in database: ${err}`);
             });
     }
-}
+};
 
 exports.postUserLocation = function (request, response) {
     const location = request.body;
@@ -163,7 +164,8 @@ exports.postUserLocation = function (request, response) {
         ? location.name
         : undefined;
 
-    db.collection('location').doc(userName)
+    db.collection('location')
+        .doc(userName)
         .set(location)
         .then(() =>
             response.status(200).json(location))
@@ -173,13 +175,11 @@ exports.postUserLocation = function (request, response) {
         });
 };
 
-
-
 exports.getDevice = function (request, response) {
-    const ArCode = request.query.name;
+    const arCode = request.query.partnumber;
 
-    db.collection('IoDevices')
-        .where('PartNumber', '==', ArCode)
+    db.collection('devices')
+        .where('partnumber', '==', arCode)
         .get()
         .then((snapshot) => {
             if (snapshot.empty) {
@@ -195,4 +195,58 @@ exports.getDevice = function (request, response) {
             response.status(500).json({ error: 'something wrong.' });
             console.error(`Error to get user Devices data in database: ${err}`);
         });
+};
+
+exports.postDevice = function (request, response) {
+    const device = request.body;
+    const deviceNumber = device.hasOwnProperty('partnumber')
+        ? device.partnumber
+        : undefined;
+
+    db.collection('devices')
+        .doc(deviceNumber)
+        .set(device)
+        .then(() =>
+            response.status(200).json(device))
+        .catch(err => {
+            response.status(500).json({ error: 'something wrong.' });
+            console.error(`Error to put device data in database: ${err}`);
+        });
+};
+
+exports.putDevice = function (request, response) {
+    let deviceDB = [];
+
+    const req = request.body;
+    const device = request.query.partnumber;
+
+    db.collection('devices')
+        .where('partnumber', '==', device)
+        .get()
+        .then(document => {
+            if (document.empty) {
+                response.status(404).json({ error: 'No matching device information.' });
+                return;
+            }
+
+            deviceDB = document.forEach(device =>
+                deviceDB.push(device.data())
+            );
+
+        }).catch(err => {
+            response.status(500).json({ error: 'Something wrong.' })
+            console.error(`Error to get user in database: ${err}`);
+        });
+
+    if (deviceDB) {
+        db.collection('devices')
+            .doc(device)
+            .update(req)
+            .then(() =>
+                response.status(200).json(req))
+            .catch(err => {
+                response.status(500).json({ error: 'Something wrong.' })
+                console.error(`Error to put device data in database: ${err}`);
+            });
+    }
 };

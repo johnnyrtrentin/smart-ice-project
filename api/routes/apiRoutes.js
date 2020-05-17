@@ -16,10 +16,11 @@ module.exports = function (app) {
         .post(apiController.postUserLocation)
         .put(apiController.putUserLocation);
 
-    app.route('/api/IoDevice')
-        .get(apiController.getDevice);
+    app.route('/api/device')
+        .get(apiController.getDevice)
+        .post(apiController.postDevice)
+        .put(apiController.putDevice);
         
-
     app.use(function (request, response) {
         response.status(404).send({ url: request.originalUrl + ' not found' })
     });
