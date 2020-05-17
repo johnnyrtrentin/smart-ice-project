@@ -18,21 +18,21 @@
 
     <ion-item class="item-margin">
         <ion-label>
-          Tempo de trajeto: {{ googleMapsService?.finalDuration }}
+          Tempo de trajeto: {{ googleMapsService.finalDuration | async }}
         </ion-label>
         <ion-icon name="time-outline" slot="start"></ion-icon>
     </ion-item>
       
     <ion-item>
         <ion-label>
-          Previsão de chegada: 
+          Previsão de chegada: {{ arrivalForecast | async }}
         </ion-label>
         <ion-icon name="time-outline" slot="start"></ion-icon>
     </ion-item>
      
     <ion-item>
         <ion-label>
-          Distância: {{ googleMapsService?.finalDistance }}
+          Distância: {{ googleMapsService.finalDistance | async }}
         </ion-label>
         <ion-icon name="bicycle-outline" slot="start"></ion-icon>
     </ion-item>

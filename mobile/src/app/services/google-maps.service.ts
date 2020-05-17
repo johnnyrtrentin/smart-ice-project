@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoogleMapsService {
-  finalDistance: Observable<string>;
-  finalDuration: Observable<string>;
+  finalDistance = new BehaviorSubject<string>('');
+  finalDuration = new BehaviorSubject<string>('');
 
   constructor() { }
 }

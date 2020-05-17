@@ -69,8 +69,6 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
         response.coords.latitude, response.coords.latitude
       );
 
-      // this.originPosition = new google.maps.LatLng(-27.086275, -48.922176);
-
       const mapOptions: google.maps.MapOptions = {
         zoom: 5,
         center: this.originPosition,
@@ -110,8 +108,8 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
       if (status === 'OK') {
         result.routes.forEach(routeResult => {
           routeResult.legs.forEach(trajectory => {
-            this.googleMapsService.finalDistance = trajectory.distance.text;
-            this.googleMapsService.finalDuration = trajectory.duration.text;
+            this.googleMapsService.finalDistance.next(trajectory.distance.text);
+            this.googleMapsService.finalDuration.next(trajectory.duration.text);
           });
         });
 
