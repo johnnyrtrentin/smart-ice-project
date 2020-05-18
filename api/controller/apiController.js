@@ -99,6 +99,28 @@ exports.postUserInfo = function (request, response) {
         });
 };
 
+exports.getAllLocations = function (request, response) {
+    let allLocations = [];
+
+    db.collection('location')
+        .get()
+        .then(document => {
+            if (document.empty) {
+                response.status(404).json({ error: 'No matching collection.' });
+                return;
+            }
+
+            document.forEach(location =>
+                allLocations.push(location.data())
+            );
+            response.status(200).json(allLocations);
+        })
+        .catch(err => {
+            response.status(500).json({ error: err });
+            console.error(`Error to get all location info: ${err}`);
+        });
+};
+
 exports.getUserLocation = function (request, response) {
     const userName = request.query.name;
 
@@ -199,8 +221,8 @@ exports.getDevice = function (request, response) {
 
 exports.postDevice = function (request, response) {
     const device = request.body;
-    const deviceNumber = device.hasOwnProperty('partnumber')
-        ? device.partnumber
+    const deviceNumber = device.hasOwnProperty('classroom')
+        ? device.classroom
         : undefined;
 
     db.collection('devices')
@@ -218,10 +240,10 @@ exports.putDevice = function (request, response) {
     let deviceDB = [];
 
     const req = request.body;
-    const device = request.query.partnumber;
+    const device = request.query.classroom;
 
     db.collection('devices')
-        .where('partnumber', '==', device)
+        .where('classroom', '==', device)
         .get()
         .then(document => {
             if (document.empty) {

@@ -90,7 +90,7 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
     }).catch(err => console.error(err));
   }
 
-  calculateRoute() {
+  private calculateRoute() {
     if (this.destinationPosition && this.originPosition) {
       const request = {
         origin: this.originPosition,
@@ -102,7 +102,7 @@ export class GoogleMapsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  traceRoute(service: any, display: any, request: any) {
+  private traceRoute(service: any, display: any, request: any) {
     service.route(request, (result: any, status: any) => {
 
       if (status === 'OK') {

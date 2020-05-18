@@ -11,6 +11,10 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
+  getAllLocations(): Observable<any> {
+    return this.http.get(`${this.apiURL}/${this.locationEndpoint}/all`);
+  }
+
   getUserLocation(): Observable<any> {
     return this.http.get(`${this.apiURL}/${this.locationEndpoint}`);
   }

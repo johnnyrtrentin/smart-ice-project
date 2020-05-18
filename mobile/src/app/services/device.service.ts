@@ -24,7 +24,7 @@ export class DeviceService {
 
   updateDevice(payload: IDevice): Observable<IDevice> {
     return this.http.put<IDevice>(
-      `${this.apiURL}/${this.deviceEndpoint}?partnumber=${payload.partnumber}`, payload
+      `${this.apiURL}/${this.deviceEndpoint}?classroom=${payload.classroom}`, payload
     );
   }
 }

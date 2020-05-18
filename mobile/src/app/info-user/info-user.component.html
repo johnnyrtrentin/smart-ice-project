@@ -47,17 +47,16 @@
 
         <ion-item lines="full">
             <ion-label position="floating">
-                <ion-icon name="bookmark-outline"></ion-icon> Selecione a Sala</ion-label>
+                <ion-icon name="bookmark-outline"></ion-icon>Sala</ion-label>
             
-                  <ion-select name="category" [selectedText]="selectcategory" [(ngModel)]="selectcategory" (ionChange)="codeSelected()" >
-                      <ion-select-option value="1" >B 200</ion-select-option>
-                      <ion-select-option value="2">B 201</ion-select-option>
-                      <ion-select-option value="3">B 202</ion-select-option>
-                      <ion-select-option value="4" >B 203</ion-select-option>
-                      <ion-select-option value="5">B 204</ion-select-option>
-                      </ion-select>
+                  <ion-select name="category" formControlName="classRoom">
+                      <ion-select-option value="B200">B200</ion-select-option>
+                      <ion-select-option value="B201">B201</ion-select-option>
+                      <ion-select-option value="B202">B202</ion-select-option>
+                      <ion-select-option value="B203">B203</ion-select-option>
+                      <ion-select-option value="B204">B204</ion-select-option>
+                </ion-select>
           
-
             <div *ngIf="classRoom.invalid && (classRoom.dirty || classRoom.touched)" class="error-msg">
                 <div *ngIf="classRoom.errors.required">
                     O campo <strong>Sala</strong> é obrigatório

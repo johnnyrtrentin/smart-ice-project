@@ -96,9 +96,7 @@
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyB4jz3FIP2T7J4bmP1GWAfWG22YApJYKV0"
       },
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android",

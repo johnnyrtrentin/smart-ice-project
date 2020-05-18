@@ -67,41 +67,19 @@ export class InfoUserComponent implements OnInit {
           exitTime: this.exitTime.value
         };
 
-        this.deviceService
-          .getDevice(userPayload.classRoom)
-          .pipe(finalize(() => this.saveUserInfo(userPayload)))
-          .subscribe(res => {
-            if (!res.status) {
-              const updateDevice: IDevice = {
-                status: true,
-                partnumber: 'TESTE'
-              };
-
-              this.deviceService
-                .updateDevice(updateDevice)
-                .subscribe();
-            }
-          }, (err => {
-            const newDevice: IDevice = {
-              status: true,
-              classroom: userPayload.classRoom,
-              partnumber: 'TESTE'
-            };
-
-            this.deviceService
-              .saveDevice(newDevice)
-              .subscribe();
-          }));
+        this.saveUserInfo(userPayload);
       }
     });
   }
 
   saveUserInfo(userPayload: object): void {
-    this.userService.saveUserInfo(userPayload).subscribe(userData => {
-      if (UserData) {
-        this.loadingButton = false;
-        this.route.navigateByUrl('/location-user');
-      }
-    });
+    this.userService
+      .saveUserInfo(userPayload)
+      .subscribe(userData => {
+        if (UserData) {
+          this.loadingButton = false;
+          this.route.navigateByUrl('/location-user');
+        }
+      });
   }
 }

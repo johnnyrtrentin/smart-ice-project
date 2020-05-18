@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IUserDB } from '../models/user-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class UserService {
     return this.http.get(`${this.apiURL}/${this.userEndpoint}/all`);
   }
 
-  getUserInfo(name: string): Observable<any> {
-    return this.http.get(`${this.apiURL}/${this.userEndpoint}?name=${name}`);
+  getUserInfo(name: string): Observable<IUserDB> {
+    return this.http.get<IUserDB>(`${this.apiURL}/${this.userEndpoint}?name=${name}`);
   }
 
   saveUserInfo(payload: object): Observable<any> {
