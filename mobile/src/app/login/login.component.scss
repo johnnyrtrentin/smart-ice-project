@@ -2,7 +2,7 @@
     font-style: normal;
     letter-spacing: normal;
     font-weight: normal;
-    margin-top:  30%;
+    margin-top:  40%;
 }
 
 
@@ -10,6 +10,7 @@
     width: 50%;
     float: left;
     height: 120px;
+    
 }
 .img4 > img {
     height: 100%;
@@ -22,8 +23,20 @@
 }
 
 ion-content{
-    --background: url('/assets/icon/fundo.png');
+    --background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiLaiSayRhhVO9yyAHJxmRtNfD23IMgcS1K-NDvfx2s716etf9&usqp=CAU');
     --background-repeat: no-repeat;
     --background-size: cover;  
     }
+
+.logo{
+    margin-top: 40px;
+}
+
+.credito{
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 90px;
+}
+
     
