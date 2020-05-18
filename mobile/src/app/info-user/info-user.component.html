@@ -47,8 +47,16 @@
 
         <ion-item lines="full">
             <ion-label position="floating">
-                <ion-icon name="bookmark-outline"></ion-icon> Sala</ion-label>
-            <ion-input type="text" formControlName="classRoom"></ion-input>
+                <ion-icon name="bookmark-outline"></ion-icon> Selecione a Sala</ion-label>
+            
+                  <ion-select name="category" [selectedText]="selectcategory" [(ngModel)]="selectcategory" (ionChange)="codeSelected()" >
+                      <ion-select-option value="1" >B 200</ion-select-option>
+                      <ion-select-option value="2">B 201</ion-select-option>
+                      <ion-select-option value="3">B 202</ion-select-option>
+                      <ion-select-option value="4" >B 203</ion-select-option>
+                      <ion-select-option value="5">B 204</ion-select-option>
+                      </ion-select>
+          
 
             <div *ngIf="classRoom.invalid && (classRoom.dirty || classRoom.touched)" class="error-msg">
                 <div *ngIf="classRoom.errors.required">
