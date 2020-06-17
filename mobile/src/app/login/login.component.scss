@@ -2,7 +2,7 @@
     font-style: normal;
     letter-spacing: normal;
     font-weight: normal;
-    margin-top:  30%;
+    margin-top:  40%;
 }
 
 
@@ -10,6 +10,7 @@
     width: 50%;
     float: left;
     height: 120px;
+    
 }
 .img4 > img {
     height: 100%;
@@ -22,8 +23,20 @@
 }
 
 ion-content{
-    --background: url('/assets/icon/fundo.png');
+    --background: url('https://ae01.alicdn.com/kf/HTB159iFKXXXXXXHXpXXq6xXFXXXj/Personalizada-fotografia-vinil-backdrops-cinza-claro-velho-mestre-foto-de-fundo-para-est-dio-de-fotografia.jpg');
     --background-repeat: no-repeat;
     --background-size: cover;  
     }
+
+.logo{
+    margin-top: 40px;
+}
+
+.credito{
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 250px;
+}
+
     
