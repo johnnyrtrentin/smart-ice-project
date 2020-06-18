@@ -19,6 +19,10 @@ module.exports = function (app) {
     app.route('/api/user/location/all')
         .get(apiController.getAllLocations);
 
+
+    app.route('api/device/all')
+        .get(apiController.getAllDevices);
+
     app.route('/api/device')
         .get(apiController.getDevice)
         .post(apiController.postDevice)

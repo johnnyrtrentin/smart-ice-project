@@ -272,3 +272,25 @@ exports.putDevice = function (request, response) {
             });
     }
 };
+
+exports.getAllDevices = function (request, response) {
+    let allDevices = [];
+
+    db.collection('devices')
+        .get()
+        .then(document => {
+            if (document.empty) {
+                response.status(404).json({ error: 'No matching collection.' });
+                return;
+            }
+
+            document.forEach(location =>
+                allDevices.push(location.data())
+            );
+            response.status(200).json(allDevices);
+        })
+        .catch(err => {
+            response.status(500).json({ error: err });
+            console.error(`Error to get all devices info: ${err}`);
+        });
+};
