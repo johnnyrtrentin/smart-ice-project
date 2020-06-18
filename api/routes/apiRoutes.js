@@ -20,7 +20,7 @@ module.exports = function (app) {
         .get(apiController.getAllLocations);
 
 
-    app.route('api/device/all')
+    app.route('/api/device/all')
         .get(apiController.getAllDevices);
 
     app.route('/api/device')
