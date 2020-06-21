@@ -10,11 +10,10 @@ const char* ssid     = "";
 const char* password =  "";
 
 String endpointAPI = "https://stark-taiga-93289.herokuapp.com/api/";
+String turnOffTime = "22:30:00";
 
 unsigned long lastTime   = 0;
 unsigned long timerDelay = 10000;
-
-String turnOffTime = "22:30:00";
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
@@ -66,12 +65,11 @@ void getDeviceStatus() {
       if (httpResponseCode > 0) {
         String payload = http.getString();
 
-        //device status == true and rele = off
         if (deserializeRequest(payload) == 1 && releStatus == 0) {
           turnOnDevice();
         } else {
-          if(releStatus == 1 && canTurnOffDevice()) {
-            turnDeviceOff();
+          if (releStatus == 1 && canTurnOffDevice()) {
+            turnOffDevice();
           }
         }
       } else {
@@ -91,7 +89,7 @@ void getDeviceStatus() {
 void connectWiFi() {
   WiFi.begin(ssid, password);
   
-  Serial.print("Connecting!");
+  Serial.print("Connecting...");
 
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -129,14 +127,16 @@ void turnOnDevice() {
   delay(200);
 }
 
-void turnDeviceOff() {
+void turnOffDevice() {
+  Serial.println("Turning off the device!");
+
   digitalWrite(relePin, HIGH);
   releStatus = 0;
   delay(200);
 }
 
 boolean canTurnOffDevice() {
-  if(timeClient.getFormattedTime() == turnOffTime) {
+  if (timeClient.getFormattedTime() == turnOffTime) {
     return true;
   } else {
     return false;
