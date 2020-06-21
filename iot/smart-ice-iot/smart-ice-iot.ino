@@ -1,25 +1,34 @@
-
 #include "WiFi.h"
 #include <HTTPClient.h>
-
+#include <NTPClient.h>
 #include "ArduinoJson.h"
+
+const int relePin = 2;
+int releStatus = 0;
 
 const char* ssid     = "";
 const char* password =  "";
 
 String endpointAPI = "https://stark-taiga-93289.herokuapp.com/api/";
 
-// Making requests in every 10 seconds;
 unsigned long lastTime   = 0;
 unsigned long timerDelay = 10000;
 
+String turnOffTime = "22:30:00";
+
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP);
+
 void setup() {
   setSerialPort();
+  setReleConfig();
   connectWiFi();
+  setUpTime();
 }
  
 void loop() {
- getDeviceStatus();
+  getCurrentTime();
+  getDeviceStatus();
 }
 
 int deserializeRequest(String value) {
@@ -37,7 +46,7 @@ int deserializeRequest(String value) {
   const char* temperature = doc["temperature"];
   boolean deviceStatus = doc["status"];
   
-  Serial.println(String(temperature) + "--" +deviceStatus + "\n");
+  Serial.println(String(temperature) + "|" + deviceStatus + "\n");
 
   return deviceStatus;
 }
@@ -55,18 +64,16 @@ void getDeviceStatus() {
       int httpResponseCode = http.GET();
 
       if (httpResponseCode > 0) {
-        Serial.print("HTTP status: ");
-        Serial.println(httpResponseCode);
-
         String payload = http.getString();
 
-        //device status == true
-        if (deserializeRequest(payload) == 1) {
-          Serial.println("true");
+        //device status == true and rele = off
+        if (deserializeRequest(payload) == 1 && releStatus == 0) {
+          turnOnDevice();
         } else {
-          Serial.println("false");
+          if(releStatus == 1 && canTurnOffDevice()) {
+            turnDeviceOff();
+          }
         }
-        
       } else {
         Serial.print("Error code: ");
         Serial.println(httpResponseCode);
@@ -95,6 +102,43 @@ void connectWiFi() {
   Serial.println(WiFi.localIP());
 }
 
+void getCurrentTime() {
+  timeClient.update();
+  delay(1000);
+}
+
 void setSerialPort() {
   Serial.begin(115200);
+}
+
+void setReleConfig() {
+  pinMode(relePin, OUTPUT);
+  digitalWrite(relePin, HIGH);
+}
+
+void setUpTime() {
+  timeClient.setTimeOffset(3600);
+  timeClient.begin();
+}
+
+void turnOnDevice() {
+  Serial.println("Turning on the device!");
+  
+  digitalWrite(relePin, LOW);
+  releStatus = 1;
+  delay(200);
+}
+
+void turnDeviceOff() {
+  digitalWrite(relePin, HIGH);
+  releStatus = 0;
+  delay(200);
+}
+
+boolean canTurnOffDevice() {
+  if(timeClient.getFormattedTime() == turnOffTime) {
+    return true;
+  } else {
+    return false;
+  }
 }
