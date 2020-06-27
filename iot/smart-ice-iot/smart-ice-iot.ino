@@ -3,7 +3,7 @@
 #include <NTPClient.h>
 #include "ArduinoJson.h"
 
-const int relePin = 2;
+const int relePin = 23;
 int releStatus = 0;
 
 const char* ssid     = "";
@@ -16,7 +16,7 @@ unsigned long lastTime   = 0;
 unsigned long timerDelay = 10000;
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP);
+NTPClient timeClient(ntpUDP, "br.pool.ntp.org", 3600, 60000);
 
 void setup() {
   setSerialPort();
@@ -45,7 +45,7 @@ int deserializeRequest(String value) {
   const char* temperature = doc["temperature"];
   boolean deviceStatus = doc["status"];
   
-  Serial.println(String(temperature) + "|" + deviceStatus + "\n");
+  Serial.println(String("Status: ") + deviceStatus + "\n");
 
   return deviceStatus;
 }
@@ -67,10 +67,10 @@ void getDeviceStatus() {
 
         if (deserializeRequest(payload) == 1 && releStatus == 0) {
           turnOnDevice();
-        } else {
-          if (releStatus == 1 && canTurnOffDevice()) {
-            turnOffDevice();
-          }
+        } else if (deserializeRequest(payload) == 0 && releStatus == 1) {
+          turnOffDevice();
+        } else if (canTurnOffDevice()) {
+          turnOffDevice();
         }
       } else {
         Serial.print("Error code: ");
@@ -115,7 +115,6 @@ void setReleConfig() {
 }
 
 void setUpTime() {
-  timeClient.setTimeOffset(3600);
   timeClient.begin();
 }
 
